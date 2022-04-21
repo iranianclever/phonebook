@@ -27,10 +27,13 @@ class Phonebook:
         list_number = self.__read()
         # Check list number empty
         if list_number:
-            # Remove item
-            del list_number[removable]
-            # Write to file
-            self.__write(list_number)
+            if removable in list_number.keys():
+                # Remove item
+                del list_number[removable]
+                # Write to file
+                self.__write(list_number)
+            else:
+                print('Name of owner not found!\n')
         else:
             print('Your phonebook is empty!\n')
 
