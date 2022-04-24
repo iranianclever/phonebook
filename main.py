@@ -21,6 +21,16 @@ class Phonebook:
         # Write new number
         self.__write(list_number)
 
+    def modify(self, name, number):
+        '''Modify phone number'''
+        # Get latest list number
+        list_number = self.__read()
+        if not list_number:
+            return False
+
+        list_number[name] = number
+        self.__write(list_number)
+
     def remove(self, removable):
         '''Write number to json file'''
         # Get list numbers
@@ -77,7 +87,7 @@ if __name__ == '__main__':
 
     # Loop for user input
     while True:
-        print('Add number = "a" - Remove Number = "r" - Show list of numbers = "s" - Exit = "q"')
+        print('Add number = "a" - Modify number = "m" Remove Number = "r" - Show list of numbers = "s" - Exit = "q"')
         # Get user input
         answer = input('Enter your key: ')
         answer = answer.lower()
@@ -107,6 +117,11 @@ if __name__ == '__main__':
 
         elif answer == 'q':
             sys.exit()
+
+        elif answer == 'm':
+            name = input('Name for modify: ')
+            number = input('New number: ')
+            phonebook.modify(name, number)
 
         else:
             print('Unknown key! Try Again.')
